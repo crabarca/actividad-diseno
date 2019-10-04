@@ -5,6 +5,6 @@ namespace Exercise2
     public interface IChessPiece
     {
         List<ChessTile> getAvailablePositions();
-        List<ChessTile> getPath();
+        List<ChessTile> getPath(int x, int y);
     }
 }

@@ -34,6 +34,21 @@ namespace Exercise2
             if (!IsMovementAvailable(piece, x, y)) return false;
 
             var path = piece.getPath(x, y);
+
+            foreach (ChessTile pathTile in path)
+            {
+                if (!isEmpty(pathTile.X, pathTile.Y)){
+                    return false;
+                }
+            }
+            if (GetPieceAtPosition(x, y).Color == piece.Color)
+            {
+                return false;
+            }
+
+            return true;
+
+            // todo despues de esto se borra ! en el metodo
             foreach(ChessTile posibleOption in piece.getAvailablePositions())
             {
                 
