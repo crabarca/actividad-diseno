@@ -32,17 +32,18 @@ namespace Exercise2
             // validacion deberia ser un method distinto
 
             if (!IsMovementAvailable(piece, x, y)) return false;
-            
+
+            var path = piece.getPath(x, y);
             foreach(ChessTile posibleOption in piece.getAvailablePositions())
             {
-                // check if there is somethign between destination and origin
+                
                 if (isEmpty(posibleOption.X, posibleOption.Y))
                 {
                     return true;
                 }
                 else
                 {
-                    if ()
+
                 }
             }
             
