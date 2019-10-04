@@ -13,15 +13,25 @@ namespace Exercise2
             Pieces = pieces;
         }
 
+        public bool IsMovementAvailable(IChessPiece piece, int x, int y)
+        {
+            foreach (ChessTile posibleOption in piece.getAvailablePositions())
+            {
+                if (posibleOption.X == x && posibleOption.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool IsMovementValid(IChessPiece piece, int x, int y)
         {
             if (!isInbound(x, y)) return false;
             // validacion deberia ser un method distinto
 
-            foreach (ChessTile posibleOption in piece.getAvailablePositions())
-            {
-
-            }
+            if (!IsMovementAvailable(piece, x, y)) return false;
 
             // A pawn can move forward one tile if it is empty, or can capture opposing pieces diagonally one tile away.
             if (piece.Type == PieceType.Pawn)
