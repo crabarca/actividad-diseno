@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Exercise2
 {
-    public class Tower
+    public class Tower : IChessPiece
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -27,7 +27,7 @@ namespace Exercise2
                 {
                     if ((Y == col) || (X == row))
                     {
-                        availablePositions.Add(new ChessTile(col, row));
+                        availablePositions.Add(new ChessTile(row, col));
                     }
                 }
             }

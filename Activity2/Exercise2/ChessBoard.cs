@@ -32,7 +32,20 @@ namespace Exercise2
             // validacion deberia ser un method distinto
 
             if (!IsMovementAvailable(piece, x, y)) return false;
-
+            
+            foreach(ChessTile posibleOption in piece.getAvailablePositions())
+            {
+                // check if there is somethign between destination and origin
+                if (isEmpty(posibleOption.X, posibleOption.Y))
+                {
+                    return true;
+                }
+                else
+                {
+                    if ()
+                }
+            }
+            
             // A pawn can move forward one tile if it is empty, or can capture opposing pieces diagonally one tile away.
             if (piece.Type == PieceType.Pawn)
             {
@@ -275,7 +288,7 @@ namespace Exercise2
             return null;
         }
 
-        private bool isSameColor(ChessPiece piece, int x, int y)
+        private bool isSameColor(IChessPiece piece, int x, int y)
         {
             return GetPieceAtPosition(x, y).Color == piece.Color;
         }

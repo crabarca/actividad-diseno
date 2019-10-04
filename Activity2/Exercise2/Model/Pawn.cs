@@ -22,9 +22,9 @@ namespace Exercise2
         public List<ChessTile> getAvailablePositions()
         {
             var availablePositions = new List<ChessTile> { };
-            availablePositions.Add(new ChessTile(Y + 1 * getDirection(), X));
-            availablePositions.Add(new ChessTile(Y + 1 * getDirection(), X + 1));
-            availablePositions.Add(new ChessTile(Y + 1 * getDirection(), X - 1));
+            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y));
+            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y + 1));
+            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y - 1));
             return availablePositions;
         }
 
@@ -38,6 +38,12 @@ namespace Exercise2
             }
 
             return direction;
+        }
+
+        public List<ChessTile> getPath(int row, int col)
+        {
+            var path = new List<ChessTile> { new ChessTile(row, col) };
+            return path;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Exercise2
 {
-    public class Bishop
+    public class Bishop : IChessPiece
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -28,7 +28,7 @@ namespace Exercise2
                 {
                     if (Math.Abs(Y - col) == Math.Abs(X - row))
                     {
-                        availablePositions.Add(new ChessTile(col, row));
+                        availablePositions.Add(new ChessTile(row, col));
                     }
                 }
             }
