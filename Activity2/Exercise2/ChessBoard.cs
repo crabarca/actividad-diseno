@@ -6,40 +6,37 @@ namespace Exercise2
 {
     public class ChessBoard
     {
-        public List<ChessPiece> Pieces { get; }
+        public List<IChessPiece> Pieces { get; }
 
-        public ChessBoard(List<ChessPiece> pieces)
+        public ChessBoard(List<IChessPiece> pieces)
         {
             Pieces = pieces;
         }
 
-        public bool IsMovementValid(ChessPiece piece, int x, int y)
+        public bool IsMovementValid(IChessPiece piece, int x, int y)
         {
-            if (x < 0 || x > 7 || y < 0 || y > 7) return false;
-            
+            if (!isInbound(x, y)) return false;
+            // validacion deberia ser un method distinto
+
+            foreach (ChessTile posibleOption in piece.getAvailablePositions())
+            {
+
+            }
+
             // A pawn can move forward one tile if it is empty, or can capture opposing pieces diagonally one tile away.
             if (piece.Type == PieceType.Pawn)
             {
-                if (piece.Color == PieceColor.White)
+                foreach (ChessTile posibleOption in piece.getAvailablePositions())
                 {
-                    if (y == piece.Y + 1 && x == piece.X && GetPieceAtPosition(x, y) == null) return true;
-                    if (y == piece.Y + 1 && x == piece.X - 1 &&
-                        GetPieceAtPosition(x, y) != null &&
-                        GetPieceAtPosition(x, y).Color == PieceColor.Black) return true;
-                    if (y == piece.Y + 1 && x == piece.X + 1 &&
-                        GetPieceAtPosition(x, y) != null &&
-                        GetPieceAtPosition(x, y).Color == PieceColor.Black) return true;
+
                 }
-                else
-                {
-                    if (y == piece.Y - 1 && x == piece.X && GetPieceAtPosition(x, y) == null) return true;
-                    if (y == piece.Y - 1 && x == piece.X - 1 &&
-                        GetPieceAtPosition(x, y) != null &&
-                        GetPieceAtPosition(x, y).Color == PieceColor.White) return true;
-                    if (y == piece.Y + 1 && x == piece.X + 1 &&
-                        GetPieceAtPosition(x, y) != null &&
-                        GetPieceAtPosition(x, y).Color == PieceColor.White) return true;
-                }
+                if (y == piece.Y + 1 * piece.DirectionMultiplier() && x == piece.X && GetPieceAtPosition(x, y) == null) return true;
+                if (y == piece.Y + 1 && x == piece.X - 1 &&
+                    !isEmpty(x,y) && !isSameColor(piece, x, y)) return true;
+                if (y == piece.Y + 1 && x == piece.X + 1 &&
+                    GetPieceAtPosition(x, y) != null &&
+                    GetPieceAtPosition(x, y).Color == PieceColor.Black) return true;
+
             }
 
             // Bishops move diagonally. They cannot move through other pieces.
@@ -50,7 +47,7 @@ namespace Exercise2
                     var testX = piece.X;
                     var testY = piece.Y;
 
-                    while (testX >= 0 && testX <= 7 && testY >= 0 && testY <= 7)
+                    while (isInbound(testX, testY)
                     {
                         if (i == 0)
                         {
@@ -89,7 +86,7 @@ namespace Exercise2
                             if (chessPiece != null) goto OUTERLOOP1;
                         }
                     }
-                    OUTERLOOP1: ;
+                OUTERLOOP1:;
                 }
             }
 
@@ -136,10 +133,10 @@ namespace Exercise2
                             if (chessPiece != null) goto OUTERLOOP1;
                         }
                     }
-                    OUTERLOOP1: ;
+                OUTERLOOP1:;
                 }
             }
-            
+
             // Queens move vertically, horizontally and diagonally. They cannot move through other pieces.
             if (piece.Type == PieceType.Queen)
             {
@@ -219,7 +216,7 @@ namespace Exercise2
                             if (chessPiece != null) goto OUTERLOOP1;
                         }
                     }
-                    OUTERLOOP1: ;
+                OUTERLOOP1:;
                 }
             }
 
@@ -266,6 +263,21 @@ namespace Exercise2
             }
 
             return null;
+        }
+
+        private bool isSameColor(ChessPiece piece, int x, int y)
+        {
+            return GetPieceAtPosition(x, y).Color == piece.Color;
+        }
+
+        private bool isEmpty(int x, int y)
+        {
+            return GetPieceAtPosition(x, y) == null;
+        }
+
+        private bool isInbound(int x, int y)
+        {
+            return x >= 0 && x <= 7 && y >= 0 && y <= 7;
         }
     }
 }
