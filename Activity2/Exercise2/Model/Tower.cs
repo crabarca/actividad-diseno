@@ -15,7 +15,7 @@ namespace Exercise2
         {
             X = x;
             Y = y;
-            Type = PieceType.Pawn;
+            Type = PieceType.Tower;
             Color = color;
         }
         public List<ChessTile> getAvailablePositions()
@@ -32,6 +32,12 @@ namespace Exercise2
                 }
             }
             return availablePositions;
+        }
+
+        public List<ChessTile> getPath(int row, int col)
+        {
+            var path = new List<ChessTile> { };
+            return path;
         }
     }
 }

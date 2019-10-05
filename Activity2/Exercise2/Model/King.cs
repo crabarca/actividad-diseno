@@ -2,7 +2,6 @@
 using System;
 
 namespace Exercise2
-
 {
     public class King: IChessPiece
     {
@@ -16,7 +15,7 @@ namespace Exercise2
         {
             X = x;
             Y = y;
-            Type = PieceType.Pawn;
+            Type = PieceType.King;
             Color = color;
         }
         public List<ChessTile> getAvailablePositions()
@@ -28,11 +27,17 @@ namespace Exercise2
                 {
                     if (((Y == col) || (X == row)) || (Math.Abs(Y - col) == Math.Abs(X - row)))
                     {
-                        availablePositions.Add(new ChessTile(col, row));
+                        availablePositions.Add(new ChessTile(row, col));
                     }
                 }
             }
             return availablePositions;
+        }
+
+        public List<ChessTile> getPath(int row, int col)
+        {
+            var path = new List<ChessTile> { };
+            return path;
         }
     }
 }
