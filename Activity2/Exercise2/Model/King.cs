@@ -34,10 +34,20 @@ namespace Exercise2
             return availablePositions;
         }
 
-        public List<ChessTile> getPath(int row, int col)
+        public List<ChessTile> getPath(int x, int y)
         {
             var path = new List<ChessTile> { };
             return path;
+        }
+
+        public ChessTile getActualPosition()
+        {
+            return new ChessTile(X, Y);
+        }
+
+        public PieceColor GetPieceColor()
+        {
+            return Color;
         }
     }
 }

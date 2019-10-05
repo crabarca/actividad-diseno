@@ -9,7 +9,7 @@ namespace Exercise2
         public int Y { get; set; }
         public PieceType Type { get; }
 
-        public PieceColor Color { get; }
+        private PieceColor Color;
 
         public Bishop(int x, int y, PieceColor color)
         {
@@ -35,10 +35,65 @@ namespace Exercise2
             return availablePositions;
         }
 
-        public List<ChessTile> getPath(int row, int col)
+        public List<ChessTile> getPath(int x, int y)
         {
             var path = new List<ChessTile> { };
+            if (X < x && Y < y)
+            {
+                var pathX = X++;
+                var pathY = Y++;
+                while (pathX < x && pathY < y)
+                {
+                    path.Add(new ChessTile(pathX, pathY));
+                    pathX++;
+                    pathY++;
+                }
+            }
+            else if (X < x && Y > y)
+            {
+                var pathX = X++;
+                var pathY = Y--;
+                while (pathX < x && pathY > y)
+                {
+                    path.Add(new ChessTile(pathX, pathY));
+                    pathX++;
+                    pathY--;
+                }
+            }
+            else if (X > x && Y > y)
+            {
+                var pathX = X--;
+                var pathY = Y--;
+                while (pathX > x && pathY > y)
+                {
+                    path.Add(new ChessTile(pathX, pathY));
+                    pathX--;
+                    pathY--;
+                }
+
+            }
+            else if (X > x && Y < y)
+            {
+                var pathX = X--;
+                var pathY = Y++;
+                while (pathX > x && pathY < y)
+                {
+                    path.Add(new ChessTile(pathX, pathY));
+                    pathX--;
+                    pathY++;
+                }
+            }
             return path;
+        }
+
+        public ChessTile getActualPosition()
+        {
+            return new ChessTile(X, Y);
+        }
+
+        public PieceColor GetPieceColor()
+        {
+            return Color;
         }
     }
 }

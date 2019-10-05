@@ -19,15 +19,6 @@ namespace Exercise2
             Color = color;
         }
 
-        public List<ChessTile> getAvailablePositions()
-        {
-            var availablePositions = new List<ChessTile> { };
-            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y));
-            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y + 1));
-            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y - 1));
-            return availablePositions;
-        }
-
         public int getDirection()
         {
             var direction = 1;
@@ -40,10 +31,29 @@ namespace Exercise2
             return direction;
         }
 
-        public List<ChessTile> getPath(int row, int col)
+        public List<ChessTile> getAvailablePositions()
         {
-            var path = new List<ChessTile> { new ChessTile(row, col) };
+            var availablePositions = new List<ChessTile> { };
+            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y));
+            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y + 1));
+            availablePositions.Add(new ChessTile(X + 1 * getDirection(), Y - 1));
+            return availablePositions;
+        }
+
+        public List<ChessTile> getPath(int x, int y)
+        {
+            var path = new List<ChessTile> { };
             return path;
+        }
+
+        public ChessTile getActualPosition()
+        {
+            return new ChessTile(X, Y);
+        }
+
+        public PieceColor GetPieceColor()
+        {
+            return Color;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Exercise2
             Type = PieceType.Tower;
             Color = color;
         }
+
         public List<ChessTile> getAvailablePositions()
         {
             var availablePositions = new List<ChessTile> { };
@@ -34,10 +35,56 @@ namespace Exercise2
             return availablePositions;
         }
 
-        public List<ChessTile> getPath(int row, int col)
+        public List<ChessTile> getPath(int x, int y)
         {
             var path = new List<ChessTile> { };
+            if (y == Y && x > X)
+            {
+                var pathX = X++;
+                while (pathX < x)
+                {
+                    path.Add(new ChessTile(pathX, Y));
+                    pathX++;
+                }
+            }
+            else if (y == Y && x < X)
+            {
+                var pathX = X--;
+                while (pathX > x)
+                {
+                    path.Add(new ChessTile(pathX, Y));
+                    pathX--;
+                }
+            }
+            else if (x == X && y > Y)
+            {
+                var pathY = Y++;
+                while (pathY < y)
+                {
+                    path.Add(new ChessTile(X, pathY));
+                    pathY++;
+                }
+            }
+            else if (x == X && y < Y)
+            {
+                var pathY = Y--;
+                while (pathY > y)
+                {
+                    path.Add(new ChessTile(X, pathY));
+                    pathY--;
+                }
+            }
             return path;
+        }
+
+        public ChessTile getActualPosition()
+        {
+            return new ChessTile(X, Y);
+        }
+
+        public PieceColor GetPieceColor()
+        {
+            return Color;
         }
     }
 }

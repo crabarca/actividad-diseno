@@ -22,7 +22,17 @@ namespace Exercise2
         public List<ChessTile> getAvailablePositions()
         {
             var availablePositions = new List<ChessTile> { };
-            // Llenar codigo
+
+            for (int row = 0; row <= 7; row++)
+            {
+                for (int col = 0; col <= 7; col++)
+                {
+                    if (Math.Abs(row - X) + Math.Abs(col - Y) == 3 && (row != X || col != Y))
+                    {
+                        availablePositions.Add(new ChessTile(row, col));
+                    }
+                }
+            }
             return availablePositions;
         }
 
@@ -30,6 +40,16 @@ namespace Exercise2
         {
             var path = new List<ChessTile> { };
             return path;
+        }
+
+        public ChessTile getActualPosition()
+        {
+            return new ChessTile(X, Y);
+        }
+
+        public PieceColor GetPieceColor()
+        {
+            return Color;
         }
     }
 }

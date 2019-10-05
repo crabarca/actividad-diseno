@@ -7,14 +7,14 @@ namespace Exercise2
     {
         static void Main(string[] args)
         {
-            var board = new ChessBoard(new List<ChessPiece>
+            var board = new ChessBoard(new List<IChessPiece>
             {
-                new ChessPiece(0, 0, PieceType.Queen, PieceColor.White),
-                new ChessPiece(0, 1, PieceType.Pawn, PieceColor.White),
-                new ChessPiece(1, 1, PieceType.Pawn, PieceColor.Black)
+                new Queen(0, 0, PieceColor.White),
+                new Pawn(0, 1, PieceColor.White),
+                new Pawn(1, 1, PieceColor.Black)
             });
 
-            bool test = board.IsMovementValid(board.Pieces[0], 0, 1);
+            bool test = board.IsMovementValid(board.Pieces[0], 1, 1);
             
             Console.WriteLine($"Test: {test}");
         }

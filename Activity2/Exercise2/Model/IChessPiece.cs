@@ -6,5 +6,7 @@ namespace Exercise2
     {
         List<ChessTile> getAvailablePositions();
         List<ChessTile> getPath(int x, int y);
+        ChessTile getActualPosition();
+        PieceColor GetPieceColor();
     }
 }
